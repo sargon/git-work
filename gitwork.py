@@ -111,6 +111,15 @@ def add(name,path):
     for remote in repo.remotes:
         click.echo("%s - " % remote,nl=False)
         click.echo(' ;'.join([url for url in remote.urls]))
+        for ref in remote.refs:
+          click.echo("%s " % ref,nl=False)
+          click.echo(ref.commit)
+
+    click.echo("Heads:")
+    for ref in repo.heads:
+        click.echo("%s " % ref,nl=False)
+        click.echo(ref.commit)
+
 
 @cli.command("init")
 @click.argument("name",type=click.STRING)
